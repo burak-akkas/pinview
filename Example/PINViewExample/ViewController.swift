@@ -15,8 +15,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Set the delegate
+        pinView.delegate = self
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -28,7 +31,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
+// MARK: - PINView delegate
+extension ViewController: PINViewDelegate {
+    func PINChanged(to string: String) {
+        debugPrint("PIN changed to", string)
+    }
+    
+    func PINFilled(with string: String) {
+        debugPrint("PIN filled with", string)
+    }
+}
